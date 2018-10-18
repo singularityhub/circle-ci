@@ -21,7 +21,7 @@ jobs:
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
             /bin/bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
             export PATH=$HOME/conda/bin:$PATH
-            /opt/conda/bin/pip install sregistry[all]
+            $HOME/conda/bin/pip install sregistry[all]
             chmod u+x ~/repo/.circleci/*.sh
             /bin/bash ~/repo/.circleci/setup.sh
 
