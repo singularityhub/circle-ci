@@ -7,6 +7,8 @@ jobs:
   build:
     machine: true
     working_directory: ~/repo
+    environment:
+      - PATH: "$HOME/conda/bin:$PATH"
     steps:
       - checkout
 
@@ -18,11 +20,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            eval "$(pyenv init -)"
-            pyenv shell 3.5.2
-            /opt/circleci/.pyenv/shims/python -m venv venv
-            . venv/bin/activate
-            pip install sregistry[all]
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+            /bin/bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
+            /opt/conda/bin/pip install sregistry[all]
             chmod u+x ~/repo/.circleci/*.sh
             /bin/bash ~/repo/.circleci/setup.sh
 
