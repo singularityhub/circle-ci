@@ -20,7 +20,7 @@ jobs:
           command: |
             eval "$(pyenv init -)"
             pyenv shell 3.5.2
-            python -m venv venv
+            /opt/circleci/.pyenv/shims/python -m venv venv
             . venv/bin/activate
             pip install sregistry[all]
             chmod u+x ~/repo/.circleci/*.sh
