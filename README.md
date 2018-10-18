@@ -1,8 +1,5 @@
 # Singularity Builder Circle-CI
 
-**Important** this build is currently not working because CircleCI doesn't support
-the [mnt](https://discuss.circleci.com/t/why-circleci-2-0-does-not-support-mounting-folders/11605/6) namespace. If you can contribute to fix this, please do!
-
 ![.circleci/sregistry-circle.png](.circleci/sregistry-circle.png)
 
 [![CircleCI](https://circleci.com/gh/singularityhub/circle-ci.svg?style=svg)](https://circleci.com/gh/singularityhub/circle-ci)

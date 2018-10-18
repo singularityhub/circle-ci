@@ -18,12 +18,11 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            sudo apt-get update
-            sudo apt-get install -y python3 python3-dev wget
+            pyenv shell 3.5.2
             python -m venv venv
             . venv/bin/activate
             pip install sregistry[all]
-            sudo chmod u+x ~/repo/.circleci/*.sh
+            chmod u+x ~/repo/.circleci/*.sh
             /bin/bash ~/repo/.circleci/setup.sh
 
       - save_cache:
@@ -35,8 +34,10 @@ jobs:
           name: build container
           command: |
             . venv/bin/activate
+            cd ~/repo
             /bin/bash ~/repo/.circleci/build.sh Singularity
-            /bin/bash ~/repo/.circleci/build.sh --tag tacos Singularity.tag
+            mkdir -p build && cp *.simg build
+            mkdir -p build && cp Singularity* build
 
       # build the container!
       # You can add any other sregistry push commands here, and specify a client
@@ -53,5 +54,5 @@ jobs:
       #- /bin/bash build.sh --uri collection/container --cli registry Singularity
 
       - store_artifacts:
-          path: ~/repo
+          path: ~/repo/build
           destination: singularity-containers
