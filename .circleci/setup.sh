@@ -20,6 +20,7 @@ echo "Python Version:"
 python --version
 pip install sregistry[all]
 sregistry version
+which sregistry
 
 echo "sregistry Version:"
 
