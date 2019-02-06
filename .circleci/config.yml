@@ -33,7 +33,6 @@ jobs:
       - run:
           name: build container
           command: |
-            . venv/bin/activate
             cd ~/repo
             /bin/bash ~/repo/.circleci/build.sh Singularity
             mkdir -p build && cp *.simg build
