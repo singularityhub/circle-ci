@@ -13,7 +13,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies
+          - v2-dependencies
 
       - run:
           name: install dependencies
@@ -27,13 +27,12 @@ jobs:
 
       - save_cache:
           paths:
-            - ./venv
-          key: v1-dependencies
+            - /home/circleci/conda
+          key: v2-dependencies
         
       - run:
           name: build container
           command: |
-            . venv/bin/activate
             cd ~/repo
             /bin/bash ~/repo/.circleci/build.sh Singularity
             mkdir -p build && cp *.simg build
