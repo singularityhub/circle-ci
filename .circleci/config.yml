@@ -41,7 +41,7 @@ jobs:
             cd ~/repo
             export PATH=$PATH:/opt/circleci/.pyenv/shims
             /bin/bash ~/repo/.circleci/build.sh Singularity
-            mkdir -p build && cp *.simg build
+            mkdir -p build && cp *.sif build
             mkdir -p build && cp Singularity* build
 
       # build the container!
