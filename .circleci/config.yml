@@ -48,7 +48,7 @@ jobs:
                 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
                 /bin/bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
                 export PATH=$HOME/conda/bin:$PATH
-                $HOME/conda/bin/pip install sregistry[all]
+                conda install -y -c defaults -c conda-forge sregistry
             else
                 echo "Miniconda is already installed, continuing to build."
             fi
