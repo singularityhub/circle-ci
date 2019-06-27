@@ -83,10 +83,22 @@ your [.circleci/config.yml](.circleci/config.yml).
 
 ### 3. Configure Singularity
 
+The recipe uses the [Singularity Orb](https://circleci.com/orbs/registry/orb/singularity/singularity) to install your chosen version of Singularity. If you want to change the version, just adjust
+the parameter here:
+
+```yaml
+  - build:
+      name: "Singularity 3.2.1 - Python 3"
+      singularity: 3.2.1
+      singularity-3: true
+```
+
 The basic steps to [setup](.circleci/setup.sh) the build are the following:
 
- - Install Singularity, we use the release 2.6 branch as it was the last to not be written in GoLang. You could of course change the lines in [setup.sh](.circleci/setup.sh) to use a specific tagged release, an older version, or development version.
- - Install the sregistry client, if needed. The [sregistry client](https://singularityhub.github.io/sregistry-cli) allows you to issue a command like "sregistry push ..." to upload a finished image to one of your cloud / storage endpoints. By default, the push won't happen, and you will just build an image using the CI.
+We also install the [sregistry client](https://singularityhub.github.io/sregistry-cli) 
+that allows you to issue a command like "sregistry push ..." to upload a finished 
+image to one of your cloud / storage endpoints. In this basic example, the push won't happen,
+ and you will just build an image using the CI.
 
 ### 4. Configure the Build
 
