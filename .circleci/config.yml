@@ -12,6 +12,9 @@ workflows:
   example:
     jobs:
       - build:
+          filters:
+            branches:
+              ignore: master
           name: "Singularity 3.2.1 - Python 3"
           singularity: 3.2.1
           singularity-3: true
