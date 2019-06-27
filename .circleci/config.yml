@@ -7,6 +7,16 @@ version: 2.1
 orbs:
   singularity: singularity/singularity@1.0.4
 
+workflows:
+  version: 2
+  example:
+    jobs:
+      - build:
+          name: "Singularity 3.2.1 - Python 3"
+          singularity: 3.2,1
+          singularity-3: true
+
+
 jobs:
   build:
     parameters:
