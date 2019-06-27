@@ -2,9 +2,31 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
-version: 2
+version: 2.1
+
+orbs:
+  singularity: singularity/singularity@1.0.4
+
+workflows:
+  version: 2
+  example:
+    jobs:
+      - build:
+          name: "Singularity 3.2.1 - Python 3"
+          singularity: 3.2.1
+          singularity-3: true
+
+
 jobs:
   build:
+    parameters:
+        singularity:
+          type: string
+          description: "Singularity version"
+        singularity-3:
+          type: boolean
+          description: "Set to true for singularity 3, false for singularity 2"
+          default: true
     machine: true
     working_directory: ~/repo
     steps:
@@ -28,7 +50,20 @@ jobs:
                 echo "Miniconda is already installed, continuing to build."
             fi
             chmod u+x ~/repo/.circleci/*.sh
-            /bin/bash ~/repo/.circleci/setup.sh
+
+      # Install Singularity
+      - when:
+          condition: << parameters.singularity-3 >>
+          steps:
+            - singularity/install-go:
+                go-version: 1.11.5
+            - singularity/debian-install-3:
+                      singularity-version: << parameters.singularity >>
+      - unless:
+          condition: << parameters.singularity-3 >>
+          steps:
+            - singularity/debian-install-2:
+                      singularity-version: << parameters.singularity >>
 
       - save_cache:
           paths:

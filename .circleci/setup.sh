@@ -50,14 +50,14 @@ else
 
     export PATH=$PATH:/usr/local/go/bin && \
         sudo mkdir -p /go && \
-        sudo chmod -R 7777 /go
+        sudo chmod -R 7777 /go && \
+        sudo mkdir -p /usr/local/var/singularity/mnt
 
     export GOPATH=/go && \
-        go get -u github.com/golang/dep/cmd/dep && \
         mkdir -p ${GOPATH}/src/github.com/sylabs && \
         cd ${GOPATH}/src/github.com/sylabs && \
-        wget https://github.com/sylabs/singularity/releases/download/v${singularity_version}/singularity-${singularity_version}.tar.gz && \
-        tar -xzvf singularity-${singularity_version}.tar.gz && \
+        wget -qO- https://github.com/sylabs/singularity/releases/download/v${singularity_version}/singularity-${singularity_version}.tar.gz && \
+        tar -xzf singularity-${singularity_version}.tar.gz && \
         cd singularity && \
         ./mconfig -p /usr/local && \
         make -C builddir && \
