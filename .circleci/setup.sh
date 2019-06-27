@@ -57,7 +57,7 @@ else
         mkdir -p ${GOPATH}/src/github.com/sylabs && \
         cd ${GOPATH}/src/github.com/sylabs && \
         wget -qO- https://github.com/sylabs/singularity/releases/download/v${singularity_version}/singularity-${singularity_version}.tar.gz && \
-        tar -xzvf singularity-${singularity_version}.tar.gz && \
+        tar -xzf singularity-${singularity_version}.tar.gz && \
         cd singularity && \
         ./mconfig -p /usr/local && \
         make -C builddir && \
